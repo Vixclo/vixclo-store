@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIXCLO — Wear Your Identity</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #fff;
+      color: #111;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    header {
+      height: 76px;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #eee;
+    }
+    .logo {
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+    }
+    nav { display: flex; gap: 28px; }
+    nav a {
+      color: #111;
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .cart-button {
+      border: 1px solid #ddd;
+      border-radius: 30px;
+      background: white;
+      padding: 12px 18px;
+      cursor: pointer;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 350px;
+      min-height: calc(100vh - 76px);
+    }
+    .hero {
+      padding: 55px 6% 35px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .eyebrow {
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: #777;
+      font-weight: bold;
+    }
+    h1 {
+      font-size: clamp(36px, 5vw, 68px);
+      line-height: 1;
+      letter-spacing: -3px;
+      margin: 28px 0;
+    }
+    .product-stage {
+      flex: 1;
+      min-height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fafafa;
+      overflow: hidden;
+    }
+    .product-stage img {
+      width: 100%;
+      max-height: 470px;
+      object-fit: contain;
+      transition: transform .5s ease;
+    }
+    .product-stage:hover img { transform: scale(1.04); }
+    .product-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding-top: 22px;
+    }
+    .product-info p { color: #777; font-size: 12px; }
+    button {
+      font: inherit;
+    }
+    .primary {
+      background: #111;
+      color: white;
+      border: 1px solid #111;
+      padding: 14px 22px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .primary:hover { background: #444; }
+    .cart {
+      border-left: 1px solid #e5e5e5;
+      padding: 28px 22px;
+      background: #fff;
+    }
+    .cart h2 { font-size: 23px; margin: 0 0 26px; }
+    .cart-item {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .cart-item img {
+      width: 76px;
+      height: 94px;
+      object-fit: cover;
+      background: #f5f5f5;
+    }
+    .cart-item h3 { font-size: 13px; margin: 4px 0 8px; }
+    .cart-item p { font-size: 12px; color: #666; margin: 0 0 10px; }
+    .price { font-size: 13px; font-weight: bold; }
+    .cart-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .quantity {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ddd;
+    }
+    .quantity button {
+      border: 0;
+      background: white;
+      padding: 5px 9px;
+      cursor: pointer;
+    }
+    .remove {
+      border: 0;
+      background: white;
+      cursor: pointer;
+    }
+    .cart-total {
+      margin-top: 28px;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+    }
+    .total-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .checkout { width: 100%; }
+    .note {
+      font-size: 11px;
+      color: #777;
+      text-align: center;
+      line-height: 1.6;
+    }
+    @media (max-width: 800px) {
+      header { padding: 0 18px; height: 66px; }
+      nav { gap: 12px; }
+      nav a { font-size: 11px; }
+      .layout { grid-template-columns: 1fr; }
+      .hero { padding: 38px 20px 25px; }
+      .product-stage { min-height: 300px; }
+      .cart { border-left: 0; border-top: 1px solid #ddd; }
+    }
+    @media (max-width: 430px) {
+      nav a:nth-child(2), nav a:nth-child(3) { display: none; }
+      h1 { letter-spacing: -2px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="#" style="color:inherit;text-decoration:none">VIXCLO.</a>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#collection">Collection</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="cart-button" onclick="document.querySelector('.cart').scrollIntoView({behavior:'smooth'})">
+      Bag (<span id="bag-count">0</span>)
+    </button>
+  </header>
+
+  <main class="layout">
+    <section class="hero" id="collection">
+      <div class="eyebrow">NEW COLLECTION &nbsp; / &nbsp; PREMIUM STREETWEAR</div>
+      <h1>Wear Your<br>Identity.</h1>
+
+      <div class="product-stage">
+        <img
+          src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=85"
+          alt="VIXCLO streetwear T-shirt">
+      </div>
+
+      <div class="product-info">
+        <div>
+          <strong>Everyday Essentials</strong>
+          <p>Built for your style. Made for your identity.</p>
+        </div>
+        <button class="primary" onclick="addToCart()">ADD TO BAG — ৳450</button>
+      </div>
+    </section>
+
+    <aside class="cart">
+      <h2>Your Bag (<span id="cart-count">0</span>)</h2>
+      <div id="cart-items">
+        <p class="note">Your bag is waiting for something good.</p>
+      </div>
+      <div class="cart-total">
+        <div class="total-line">
+          <span>Subtotal</span>
+          <strong id="subtotal">৳0</strong>
+        </div>
+        <p class="note">Delivery charges, if applicable, are confirmed with your order.</p>
+        <button class="primary checkout" onclick="checkout()">CHECKOUT</button>
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    const products = [{
+      id: 1,
+      name: "VIXCLO Essential Tee",
+      size: "L",
+      price: 450,
+      qty: 0,
+      image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=300&q=80"
+    }];
+
+    function addToCart() {
+      products[0].qty++;
+      renderCart();
+    }
+
+    function changeQty(id, amount) {
+      const item = products.find(p => p.id === id);
+      item.qty = Math.max(0, item.qty + amount);
+      renderCart();
+    }
+
+    function removeItem(id) {
+      const item = products.find(p => p.id === id);
+      item.qty = 0;
+      renderCart();
+    }
+
+    function renderCart() {
+      const items = products.filter(p => p.qty > 0);
+      const count = items.reduce((sum, p) => sum + p.qty, 0);
+      const total = items.reduce((sum, p) => sum + p.qty * p.price, 0);
+
+      document.getElementById("bag-count").textContent = count;
+      document.getElementById("cart-count").textContent = count;
+      document.getElementById("subtotal").textContent = "৳" + total;
+
+      document.getElementById("cart-items").innerHTML = items.length
+        ? items.map(p => `
+          <div class="cart-item">
+            <img src="${p.image}" alt="${p.name}">
+            <div>
+              <h3>${p.name}</h3>
+              <p>Size: ${p.size}</p>
+              <p>৳${p.price}</p>
+              <div class="cart-actions">
+                <div class="quantity">
+                  <button onclick="changeQty(${p.id},-1)">−</button>
+                  <span>${p.qty}</span>
+                  <button onclick="changeQty(${p.id},1)">+</button>
+                </div>
+                <button class="remove" aria-label="Remove item" onclick="removeItem(${p.id})">✕</button>
+              </div>
+            </div>
+          </div>`).join("")
+        : '<p class="note">Your bag is waiting for something good.</p>';
+    }
+
+    function checkout() {
+      if (!products.some(p => p.qty > 0)) {
+        alert("Your bag is empty. Add a product first!");
+        return;
+      }
+      alert("Thanks for choosing VIXCLO! Online checkout will be connected in a future step.");
+    }
+  </script>
+</body>
+</html>
